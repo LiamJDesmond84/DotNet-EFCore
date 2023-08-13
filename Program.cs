@@ -2,6 +2,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext(options => options.UseMySql(Configuration["DBInfo:ConnectionString"]));
+builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
 
 var app = builder.Build();
 
