@@ -6,6 +6,26 @@ namespace DotNet_EFCore.Controllers;
 
 public class HomeController : Controller
 {
+
+
+    private MyContext dbContext;
+
+    // here we can "inject" our context service into the constructor
+    public HomeController(MyContext context)
+    {
+        dbContext = context;
+    }
+
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+
+
+
+
+
     private readonly ILogger<HomeController> _logger;
 
     public HomeController(ILogger<HomeController> logger)
@@ -13,10 +33,6 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
-    {
-        return View();
-    }
 
     public IActionResult Privacy()
     {
