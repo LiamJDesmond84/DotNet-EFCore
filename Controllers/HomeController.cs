@@ -18,8 +18,11 @@ public class HomeController : Controller
         _logger = logger;
     }
 
+    [HttpGet("")]
     public IActionResult Index()
     {
+        List<Monster> AllMonsters = dbContext.Monsters.ToList();
+
         return View();
     }
 
