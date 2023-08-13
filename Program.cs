@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 //builder.Services.AddDbContext(options => options.UseMySql(Configuration["DBInfo:ConnectionString"]));
 //builder.Services.AddDbContext<MyContext>(options => options.UseMySql(Configuration["DBInfo:ConnectionString"]));
-builder.Services.AddDbContext<MyContext>(options => options.UseMySql(Configuration["DBInfo:ConnectionString"]));
+builder.Services.AddDbContext<MyContext>(options => options.UseMySql("DBInfo:ConnectionString", ServerVersion.AutoDetect("DBInfo:ConnectionString")));
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
 
 var app = builder.Build();
