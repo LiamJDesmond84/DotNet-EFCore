@@ -9,6 +9,7 @@ public class HomeController : Controller
 
     private readonly ILogger<HomeController> _logger;
 
+    // DbContext injection
     private MyContext dbContext;
 
     // here we can "inject" our context service into the constructor
@@ -25,6 +26,36 @@ public class HomeController : Controller
 
         return View();
     }
+
+
+    [HttpGet("")]
+    public IActionResult Index()
+    {
+        // Get all Users
+        ViewBag.AllUsers = dbContext.Monsters.ToList();
+
+        // Get Users with the LastName "Jefferson"
+        ViewBag.Jeffersons = dbContext.Users
+            .Where(u => u.LastName == "Jefferson")
+            .ToList();
+
+        // Get the 5 most recently added Users
+        ViewBag.MostRecent = dbContext.Users
+            .OrderByDescending(u => u.CreatedAt)
+            .Take(5)
+            .ToList();
+
+        return View();
+    }
+
+
+
+
+
+
+
+
+
 
 
 
