@@ -36,7 +36,7 @@ public class HomeController : Controller
 
         // Get Users with the LastName "Jefferson"
         ViewBag.Jeffersons = dbContext.Monsters
-            .Where(u => u.LastName == "Jefferson")
+            .Where(u => u.Name == "Jefferson")
             .ToList();
 
         // Get the 5 most recently added Users
