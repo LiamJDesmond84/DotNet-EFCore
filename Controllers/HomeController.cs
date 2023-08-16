@@ -29,18 +29,18 @@ public class HomeController : Controller
 
 
     [HttpGet("")]
-    public IActionResult Index()
+    public IActionResult Example()
     {
         // Get all Users
         ViewBag.AllUsers = dbContext.Monsters.ToList();
 
         // Get Users with the LastName "Jefferson"
-        ViewBag.Jeffersons = dbContext.Users
+        ViewBag.Jeffersons = dbContext.Monsters
             .Where(u => u.LastName == "Jefferson")
             .ToList();
 
         // Get the 5 most recently added Users
-        ViewBag.MostRecent = dbContext.Users
+        ViewBag.MostRecent = dbContext.Monsters
             .OrderByDescending(u => u.CreatedAt)
             .Take(5)
             .ToList();
