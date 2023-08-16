@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using DotNet_EFCore.Models;
+using System;
 
 namespace DotNet_EFCore.Controllers;
 
@@ -36,7 +37,7 @@ public class HomeController : Controller
 
         // Get Users with the LastName "Jefferson"
         ViewBag.Jeffersons = dbContext.Monsters
-            .Where(u => u.Name == "Jefferson")
+            .Where(u => u.Name == "Jason")
             .ToList();
 
         // Get the 5 most recently added Users
@@ -46,6 +47,12 @@ public class HomeController : Controller
             .ToList();
 
         return View();
+    }
+
+    public IActionResult GetOne(int id)
+    {
+        Monster oneUser = dbContext.Monsters.FirstOrDefault(x => x.MonsterId == id);
+        // Other code
     }
 
 
