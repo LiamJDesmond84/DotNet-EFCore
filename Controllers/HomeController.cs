@@ -51,8 +51,10 @@ public class HomeController : Controller
 
     public IActionResult GetOne(int id)
     {
-        Monster oneUser = dbContext.Monsters.FirstOrDefault(x => x.MonsterId == id);
+        Monster single = dbContext.Monsters.FirstOrDefault(x => x.MonsterId == id);
         // Other code
+
+        return View("GetOne", single);
     }
 
 
