@@ -49,6 +49,7 @@ public class HomeController : Controller
         return View();
     }
 
+    [HttpGet("/{id}")]
     public IActionResult GetOne(int id)
     {
         Monster? single = dbContext.Monsters.FirstOrDefault(x => x.MonsterId == id);
