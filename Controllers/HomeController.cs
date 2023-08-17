@@ -61,7 +61,9 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult CreateOne(Monster monster)
     {
+        dbContext.Monsters.Add(monster);
 
+        return View("Index");
     }
 
 
