@@ -58,6 +58,12 @@ public class HomeController : Controller
         return View("GetOne", single);
     }
 
+    [HttpPost]
+    public IActionResult CreateOne(Monster monster)
+    {
+
+    }
+
 
 
 
