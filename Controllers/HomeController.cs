@@ -49,7 +49,7 @@ public class HomeController : Controller
         return View();
     }
 
-    [HttpGet("/{id}")]
+    [HttpGet("{id}")]
     public IActionResult GetOne(int id)
     {
         Monster? single = dbContext.Monsters.FirstOrDefault(x => x.MonsterId == id);
@@ -58,7 +58,7 @@ public class HomeController : Controller
         return View("GetOne", single);
     }
 
-    [HttpPost]
+    [HttpPost("create")]
     public IActionResult CreateOne(Monster monster)
     {
         //dbContext.Monsters.Add(monster);
@@ -69,6 +69,24 @@ public class HomeController : Controller
         dbContext.SaveChanges();
 
         return View("Index");
+    }
+
+
+    // Inside HomeController
+    [HttpPost("update/{monsterId}")]
+    public IActionResult UpdateOne(int monsterId)
+    {
+        // We must first Query for a single User from our Context object to track changes.
+        Monster RetrievedUser = dbContext.Monsters
+            .FirstOrDefault(user => user.MonsterId == monsterId;
+        // Then we may modify properties of this tracked model object
+        RetrievedUser.FirstName = "New first name";
+        RetrievedUser.UpdatedAt = DateTime.Now;
+
+        // Finally, .SaveChanges() will update the DB with these new values
+        dbContext.SaveChanges();
+
+        // Other code
     }
 
 
