@@ -68,7 +68,7 @@ public class HomeController : Controller
         dbContext.Add(monster);
         dbContext.SaveChanges();
 
-        return View("Index");
+        return RedirectToAction("Index");
     }
 
 
@@ -76,17 +76,19 @@ public class HomeController : Controller
     [HttpPost("update/{monsterId}")]
     public IActionResult UpdateOne(int monsterId)
     {
-        // We must first Query for a single User from our Context object to track changes.
+        // We must first Query for a single Monster from our Context object to track changes.
         Monster RetrievedUser = dbContext.Monsters
             .FirstOrDefault(user => user.MonsterId == monsterId;
         // Then we may modify properties of this tracked model object
-        RetrievedUser.FirstName = "New first name";
+        RetrievedUser.Name = "New name";
         RetrievedUser.UpdatedAt = DateTime.Now;
 
         // Finally, .SaveChanges() will update the DB with these new values
         dbContext.SaveChanges();
 
         // Other code
+
+        return RedirectToAction("Index");
     }
 
 
