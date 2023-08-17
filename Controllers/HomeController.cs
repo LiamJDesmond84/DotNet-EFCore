@@ -62,6 +62,7 @@ public class HomeController : Controller
     public IActionResult CreateOne(Monster monster)
     {
         dbContext.Monsters.Add(monster);
+        dbContext.SaveChanges();
 
         return View("Index");
     }
