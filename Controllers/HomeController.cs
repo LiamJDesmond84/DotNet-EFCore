@@ -94,7 +94,7 @@ public class HomeController : Controller
     public IActionResult Delete(int id)
     {
 
-        Monitor RetrievedUser = dbContext.Monsters.SingleOrDefault(x =>x.MonsterId == id);
+        Monster RetrievedUser = dbContext.Monsters.SingleOrDefault(x =>x.MonsterId == id);
 
         dbContext.Monsters.Remove(RetrievedUser);
 
