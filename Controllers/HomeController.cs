@@ -76,8 +76,8 @@ public class HomeController : Controller
     [HttpPost("update/{Id}")]
     public IActionResult UpdateOne(int Id)
     {
-        // We must first Query for a single Monster from our Context object to track changes.
-        Monster RetrievedUser = dbContext.Monsters.FirstOrDefault(x => x.MonsterId == Id;
+        // We must first Query for a single user from our Context object to track changes.
+        Monster? RetrievedUser = dbContext.Monsters.FirstOrDefault(x => x.MonsterId == Id);
         // Then we may modify properties of this tracked model object
         RetrievedUser.Name = "New name";
         RetrievedUser.UpdatedAt = DateTime.Now;
@@ -93,11 +93,13 @@ public class HomeController : Controller
     [HttpDelete("delete/{Id}")]
     public IActionResult Delete(int id)
     {
+        // Like Update, we will need to query for a single user from our Context object
+        Monster? RetrievedUser = dbContext.Monsters.SingleOrDefault(x =>x.MonsterId == id);
 
-        Monster RetrievedUser = dbContext.Monsters.SingleOrDefault(x =>x.MonsterId == id);
-
+        // Then pass the object we queried for to .Remove() on Users
         dbContext.Monsters.Remove(RetrievedUser);
 
+        // Finally, .SaveChanges() will remove the corresponding row representing this User from DB 
         dbContext.SaveChanges();
 
         return RedirectToAction("Index");
