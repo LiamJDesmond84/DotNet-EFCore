@@ -73,7 +73,7 @@ public class HomeController : Controller
 
 
     // Inside HomeController
-    [HttpPost("update/{monsterId}")]
+    [HttpPost("update/{Id}")]
     public IActionResult UpdateOne(int Id)
     {
         // We must first Query for a single Monster from our Context object to track changes.
@@ -88,6 +88,12 @@ public class HomeController : Controller
         // Other code
 
         return RedirectToAction("Index");
+    }
+
+    [HttpDelete("delete/{Id}")]
+    public IActionResult Delete(int id)
+    {
+
     }
 
 
