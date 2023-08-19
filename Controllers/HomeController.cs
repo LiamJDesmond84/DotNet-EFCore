@@ -74,11 +74,10 @@ public class HomeController : Controller
 
     // Inside HomeController
     [HttpPost("update/{monsterId}")]
-    public IActionResult UpdateOne(int monsterId)
+    public IActionResult UpdateOne(int Id)
     {
         // We must first Query for a single Monster from our Context object to track changes.
-        Monster RetrievedUser = dbContext.Monsters
-            .FirstOrDefault(user => user.MonsterId == monsterId;
+        Monster RetrievedUser = dbContext.Monsters.FirstOrDefault(x => x.MonsterId == Id;
         // Then we may modify properties of this tracked model object
         RetrievedUser.Name = "New name";
         RetrievedUser.UpdatedAt = DateTime.Now;
